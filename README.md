@@ -178,9 +178,9 @@ npm run test:watch
 
 ## 🧠 Thought Process
 
-Origionally I was going to start the project in Bun as I've been using this more lately, but when looking through the node docs I saw they added multi threading and I wanted to try it. I origionally was going to handle that ugly for loop on another concurrent worker to speed up time. Way unessisary but I already busted time setting up the main cluster. I had to do alot of prep work and a few POC's before attempting the project.
+Originally I was going to start the project in Bun as I've been using this more lately, but when looking through the Node docs I saw they added multi-threading and I wanted to try it. I originally was going to handle that ugly for loop on another concurrent worker to speed up time. Way unnecessary but I already busted time setting up the main cluster. I had to do a lot of prep work and a few POCs before attempting the project.
 
-You may notice rateLimiter.test.js is now with AI notes. I wanted to get AMEX 100% test coverage and my tests broke after I implemented the clusters. I will try to address it on another branch, so consider main the 2ish hour submission. Other then that I only used AI on the docs and the v2 of the powershell script for rapid manual testing.  
+You may notice rateLimiter.test.js is now with AI notes. I wanted to get AMEX 100% test coverage and my tests broke after I implemented the clusters. I will try to address it on another branch, so consider main the 2-ish hour submission. Other than that I only used AI on the docs and the v2 of the PowerShell script for rapid manual testing.
 
 ### Order of operations
 - Initial Look
