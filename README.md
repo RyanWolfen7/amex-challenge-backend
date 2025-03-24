@@ -2,6 +2,21 @@
 
 A high-performance, resilient Node.js backend service with caching, rate limiting, and circuit breaker patterns.
 
+## Folder Structure
+
+```
+amex-challenge-backend/
+├── src/
+│   ├── routes/          # API route handlers
+│   ├── utils/           # Utility functions (e.g., circuit breaker, caching)
+│   ├── middlewares/     # Custom middleware (e.g., rate limiter, security headers)
+│   └── app.js           # Main application entry point
+├── test/                # Test scripts and test cases
+├── Dockerfile           # Docker configuration
+├── package.json         # Project metadata and dependencies
+└── README.md            # Project documentation
+```
+
 ## Table of Contents
 
 - [Installation](#installation)
@@ -10,6 +25,7 @@ A high-performance, resilient Node.js backend service with caching, rate limitin
 - [Testing](#testing)
 - [Features](#features)
 - [Thought Process](#thought-process)
+- [TODOs](#todos)
 
 ## Installation
 
@@ -200,6 +216,50 @@ The performance improvements focused on caching, which dramatically reduced resp
 Refactoring the routes improved code organization while maintaining backward compatibility with existing API contracts. The logger implementation was enhanced to provide structured logging with proper error context, making debugging and monitoring more effective.
 
 Throughout the process, I maintained a balance between immediate improvements and setting up patterns that could scale with the application's growth. Each decision was guided by the principles of reliability, performance, security, and maintainability.
+
+## TODOs
+
+To take this application into production, consider the following steps:
+
+1. **Authentication and Authorization**:
+   - Implement JWT-based authentication.
+   - Add role-based access control (RBAC) for sensitive endpoints.
+
+2. **Environment Configuration**:
+   - Ensure all sensitive data (e.g., API keys, database credentials) are managed using environment variables.
+   - Verify that `dotenv` is properly configured for loading environment variables.
+
+3. **Database Integration**:
+   - Replace in-memory caching with a distributed cache like Redis.
+   - Add a database (e.g., PostgreSQL, MongoDB) for persistent storage.
+
+4. **Logging and Monitoring**:
+   - Integrate centralized logging (e.g., ELK stack, Datadog).
+   - Add monitoring tools like Prometheus and Grafana for performance metrics.
+
+5. **Error Handling**:
+   - Implement a global error handler for consistent error responses.
+   - Add retry mechanisms for transient errors.
+
+6. **Security Enhancements**:
+   - Enforce HTTPS with TLS certificates.
+   - Add input validation and sanitization to prevent injection attacks.
+   - Configure CORS policies for allowed origins.
+
+7. **Scalability**:
+   - Use a process manager like PM2 for clustering.
+   - Deploy to a container orchestration platform like Kubernetes.
+
+8. **CI/CD Pipeline**:
+   - Set up automated testing and deployment pipelines using GitHub Actions or Jenkins.
+
+9. **Documentation**:
+   - Add API documentation using tools like Swagger or Postman.
+   - Provide detailed setup and troubleshooting guides.
+
+10. **Load Testing**:
+    - Perform load testing using tools like Apache JMeter or k6.
+    - Optimize performance based on test results.
 
 ## License
 
