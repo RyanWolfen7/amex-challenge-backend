@@ -8,6 +8,5 @@ module.exports = {
     clearMocks: true,
     resetMocks: true,
     restoreMocks: true,
-    nodeArgs: ["--experimental-vm-modules"],
   };
   
