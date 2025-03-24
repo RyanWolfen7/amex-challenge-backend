@@ -15,6 +15,8 @@ const app = fastify({
 });
  // CACHE
  app.register(require('./utils/cacher')); // in case you dont have reddis
+ // XSS HEADERS
+ app.register(require('./middleware/xssProtection'));
 // RateLimiter 
 app.register(require('./middleware/rateLimiter'))
 // ROUTES
