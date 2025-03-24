@@ -1,45 +1,206 @@
-## Order of operations
-- initial Look
-    - needs
-        - auth
-            - no env
-            - no SSL certs
-        - central logging (P1)
-        - better error handling
-        - basic security
-            - rate limmiter
+# Amex Challenge Backend
+
+A high-performance, resilient Node.js backend service with caching, rate limiting, and circuit breaker patterns.
+
+## Table of Contents
+
+- [Installation](#installation)
+- [API Endpoints](#api-endpoints)
+- [Deployment](#deployment)
+- [Testing](#testing)
+- [Features](#features)
+- [Thought Process](#thought-process)
+
+## Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/amex-challenge-backend.git
+cd amex-challenge-backend
+
+# Install dependencies
+npm install
+
+# Start the server
+npm start
+
+# Start in development mode
+npm run dev
+```
+
+## API Endpoints
+
+### Events
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/events` | Retrieve all events |
+| GET | `/events/:id` | Retrieve a specific event by ID |
+| GET | `/events/user/:id` | Retrieve all events for a specific user |
+| POST | `/events` | Create a new event |
+| GET | `/events/circuit-status` | Get circuit breaker status |
+
+### Users
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/users` | Retrieve all users |
+| GET | `/users/:id` | Retrieve a specific user by ID |
+
+## Deployment
+
+### Local Deployment
+
+```bash
+# Start the server for local development
+npm run dev
+
+# Start the server for production
+npm start
+```
+
+### Docker Deployment
+
+```bash
+# Build the Docker image
+docker build -t amex-challenge-backend .
+
+# Run the container
+docker run -p 3000:3000 amex-challenge-backend
+```
+
+### Cloud Deployment
+
+The application is designed to be deployed to any cloud platform:
+
+1. **AWS**:
+   - Push to Elastic Beanstalk or deploy as a container in ECS
+   - Set environment variables for configuration
+
+2. **Azure**:
+   - Deploy to App Service or Azure Container Instances
+   - Configure environment variables in Application Settings
+
+3. **GCP**:
+   - Deploy to Cloud Run or App Engine
+   - Set environment variables in the cloud console
+
+## Testing
+
+### Manual Testing
+
+The application includes a PowerShell script for manual API testing:
+
+```bash
+# Run the manual API test script
+cd amex-challenge-backend\test
+.\api.test.ps1
+```
+
+This script will run a series of requests to test all endpoints and provide detailed output of the responses.
+
+### Automated Testing
+
+The application uses Jest for unit and integration testing:
+
+```bash
+# Run all tests
+npm test
+
+# Run tests with coverage
+npm run test:coverage
+
+# Run tests in watch mode during development
+npm run test:watch
+```
+
+## Features
+
+### Caching
+
+The application implements an in-memory caching system that:
+- Caches API responses to reduce latency
+- Supports configurable TTL (Time To Live)
+- Automatically cleans up expired items
+
+### Rate Limiting
+
+To protect against abuse, the API implements rate limiting:
+- 100 requests per minute per client
+- Configurable limits and time windows
+- Appropriate 429 status codes when limits are exceeded
+
+### Circuit Breaker Pattern
+
+To improve resilience, the API implements circuit breaker patterns:
+- Prevents cascading failures
+- Automatically detects and isolates failing services
+- Self-healing with automatic retries
+- Status monitoring via `/events/circuit-status` endpoint
+
+### Security Headers
+
+The application implements security best practices:
+- XSS Protection
+- Content Security Policy
+- CORS protection
+- Additional security headers
+
+## Thought Process
+
+### Order of operations
+- Initial Look
+    - Needs
+        - Auth
+            - No env
+            - No SSL certs
+        - Central logging (P1)
+        - Better error handling
+        - Basic security
+            - Rate limiter
             - TLS/SSL certs
             - XSS
             - CORS configuration
-        -performance issues
-            - no code splitting
-            - no cacher
-            - single threaded node
-
-        - ci/cd
-- inital calls
-    - noticed that ID doesn't seem right for events
+        - Performance issues
+            - No code splitting
+            - No cacher
+            - Single threaded node
+        - CI/CD
+- Initial calls
+    - Noticed that ID doesn't seem right for events
     - getEventByID should be its own call
-        - if you call this endpoint with an actual id it crashes
-            - only can call by event-1 or event-3
+        - If you call this endpoint with an actual id it crashes
+            - Only can call by event-1 or event-3
     - get userBy ID should be its own call
-- Build out my priotity list and current schema
+- Build out my priority list and current schema
 - Updated JSON with needed tools and refactored
-- updated logger
-    - found that getEvents has a fetch error that wasn't caught with initial errors
-    - installed pino-pretty as dev dep
-    - changed object to print well
-    - added error handling
-- refactored routs
-    - registered routes
-    - migrated routs
-    - Look into refactoring one later (endpoint cant be changed so i'm going to try concurrant threads)
-- created a cacher
-    - takes 500ms+ endpoints to < 1ms 
-    - make a connection to redis or enterprise for prod
-- added simple rate Limmiter to protect from DDOS attacks
-- added xss headers
-- created circut breaker
-    - only added it to the events routes, would add it to whole thing, but I want to try something new i found in node (I've mostly been using bun lately)
-- updated shell script to be interactive ant manually test each endpoint
-- trying node multi thread. putting 
+- Updated logger
+    - Found that getEvents has a fetch error that wasn't caught with initial errors
+    - Installed pino-pretty as dev dep
+    - Changed object to print well
+    - Added error handling
+- Refactored routes
+    - Registered routes
+    - Migrated routes
+    - Look into refactoring one later (endpoint can't be changed so I'm going to try concurrent threads)
+- Created a cacher
+    - Takes 500ms+ endpoints to < 1ms 
+    - Make a connection to Redis or enterprise for prod
+- Added simple rate limiter to protect from DDOS attacks
+- Added XSS headers
+- Created circuit breaker
+    - Only added it to the events routes, would add it to whole thing, but I want to try something new I found in node (I've mostly been using Bun lately)
+- Updated shell script to be interactive and manually test each endpoint
+- Trying node multi-thread implementation
+
+My approach was to first analyze the existing system for critical vulnerabilities and performance bottlenecks. Security and reliability were top priorities - implementing rate limiting and XSS protection to prevent common attacks, while adding circuit breakers to prevent cascading failures in downstream services.
+
+The performance improvements focused on caching, which dramatically reduced response times from 500ms+ to under 1ms for frequently requested resources. Rather than building a distributed cache immediately, I opted for an in-memory solution that could later be swapped with Redis for production environments. This gave us immediate benefits while leaving the door open for more robust solutions.
+
+Refactoring the routes improved code organization while maintaining backward compatibility with existing API contracts. The logger implementation was enhanced to provide structured logging with proper error context, making debugging and monitoring more effective.
+
+Throughout the process, I maintained a balance between immediate improvements and setting up patterns that could scale with the application's growth. Each decision was guided by the principles of reliability, performance, security, and maintainability.
+
+## License
+
+MIT

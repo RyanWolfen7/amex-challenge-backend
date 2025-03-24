@@ -44,7 +44,8 @@ module.exports = async function (app, opts) {
         if (!resp.ok) req.log.error(`External API error: ${resp.status} ${errorText}`)
         return await resp.json();
       });
-      app.cache.del('all-events'); // so that cache for events is cleared on update
+      app.cache.del('all-events');
+
       return data;
     } catch (err) {
       if (err.message.includes('Circuit is OPEN')) {
@@ -55,7 +56,6 @@ module.exports = async function (app, opts) {
           retryAfter: 30
         });
       }
-
       req.log.error('Error adding event', err);
       return reply.status(500).send({
         error: 'Internal Server Error',
@@ -72,7 +72,6 @@ module.exports = async function (app, opts) {
       req.log.info(`Cache HIT for event ${id}`);
       return reply.send(cachedEvent);
     }
-
     const event = await fetch('http://event.com/getEventById/' + "event-" + id);
     if (!event.ok) req.log.error(event, `Failed to get EVENT ${id}`)
     const data = await event.json();
