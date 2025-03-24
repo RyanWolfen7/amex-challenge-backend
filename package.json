@@ -1,16 +1,24 @@
 {
   "name": "challenge-backend",
   "version": "1.0.0",
-  "main": "index.js",
+  "description": "Backend challenge application",
+  "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node services"
+    "start": "node src/index.js",
+    "dev": "NODE_ENV=dev node src/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage"
   },
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "fastify": "^4.28.0",
+    "dotenv": "^16.4.7",
+    "fastify": "^5.x",
+    "fastify-plugin": "^5.0.1",
+    "pino-pretty": "^13.0.0"
+  },
+  "devDependencies": {
     "msw": "^2.7.3"
   }
 }
