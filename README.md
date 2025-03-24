@@ -40,3 +40,6 @@
 - added simple rate Limmiter to protect from DDOS attacks
 - added xss headers
 - created circut breaker
+    - only added it to the events routes, would add it to whole thing, but I want to try something new i found in node (I've mostly been using bun lately)
+- updated shell script to be interactive ant manually test each endpoint
+- trying node multi thread. putting 
