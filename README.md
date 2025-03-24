@@ -34,3 +34,9 @@
     - registered routes
     - migrated routs
     - Look into refactoring one later (endpoint cant be changed so i'm going to try concurrant threads)
+- created a cacher
+    - takes 500ms+ endpoints to < 1ms 
+    - make a connection to redis or enterprise for prod
+- added simple rate Limmiter to protect from DDOS attacks
+- added xss headers
+- created circut breaker
