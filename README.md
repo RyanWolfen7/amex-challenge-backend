@@ -1,6 +1,6 @@
 # 🚀 Amex Challenge Backend
 
-![Node.js](https://img.shields.io/badge/Node.js-v16-green) ![License](https://img.shields.io/badge/License-MIT-blue) ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
+![Node.js](https://img.shields.io/badge/Node.js-v23-green) ![License](https://img.shields.io/badge/License-MIT-blue) ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
 
 A high-performance, resilient Node.js backend service with caching, rate limiting, and circuit breaker patterns.
 
