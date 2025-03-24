@@ -13,7 +13,8 @@ const app = fastify({
   requestIdLogLabel: 'reqId',
   genReqId: (req) => require('crypto').randomUUID(),
 });
-
+// RateLimiter 
+app.register(require('./middleware/rateLimiter'))
 // ROUTES
 app.register(require('./routes/users'), { prefix: '/users' });
 app.register(require('./routes/events'), { prefix: '/events' });
