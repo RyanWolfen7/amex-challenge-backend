@@ -127,7 +127,7 @@ cd amex-challenge-backend\test
 .\api.test.ps1
 ```
 
-This script will run a series of requests to test all endpoints and provide detailed output of the responses.
+This script will run a series of requests to test all endpoints and provide detailed output of the responses. Make sure you have another terminal up with the server so you can see the logs when running this.
 
 ### Automated Testing
 
@@ -177,6 +177,10 @@ npm run test:watch
 ---
 
 ## 🧠 Thought Process
+
+Origionally I was going to start the project in Bun as I've been using this more lately, but when looking through the node docs I saw they added multi threading and I wanted to try it. I origionally was going to handle that ugly for loop on another concurrent worker to speed up time. Way unessisary but I already busted time setting up the main cluster. I had to do alot of prep work and a few POC's before attempting the project.
+
+You may notice rateLimiter.test.js is now with AI notes. I wanted to get AMEX 100% test coverage and my tests broke after I implemented the clusters. I will try to address it on another branch, so consider main the 2ish hour submission. Other then that I only used AI on the docs and the v2 of the powershell script for rapid manual testing.  
 
 ### Order of operations
 - Initial Look
