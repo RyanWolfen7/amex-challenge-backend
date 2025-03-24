@@ -1,8 +1,12 @@
-# Amex Challenge Backend
+# 🚀 Amex Challenge Backend
+
+![Node.js](https://img.shields.io/badge/Node.js-v16-green) ![License](https://img.shields.io/badge/License-MIT-blue) ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
 
 A high-performance, resilient Node.js backend service with caching, rate limiting, and circuit breaker patterns.
 
-## Folder Structure
+---
+
+## 📂 Folder Structure
 
 ```
 amex-challenge-backend/
@@ -17,7 +21,9 @@ amex-challenge-backend/
 └── README.md            # Project documentation
 ```
 
-## Table of Contents
+---
+
+## 📜 Table of Contents
 
 - [Installation](#installation)
 - [API Endpoints](#api-endpoints)
@@ -27,7 +33,9 @@ amex-challenge-backend/
 - [Thought Process](#thought-process)
 - [TODOs](#todos)
 
-## Installation
+---
+
+## ⚙️ Installation
 
 ```bash
 # Clone the repository
@@ -44,26 +52,30 @@ npm start
 npm run dev
 ```
 
-## API Endpoints
+---
+
+## 📡 API Endpoints
 
 ### Events
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/events` | Retrieve all events |
-| GET | `/events/:id` | Retrieve a specific event by ID |
-| GET | `/events/user/:id` | Retrieve all events for a specific user |
-| POST | `/events` | Create a new event |
-| GET | `/events/circuit-status` | Get circuit breaker status |
+| Method | Endpoint                | Description                          |
+|--------|--------------------------|--------------------------------------|
+| GET    | `/events`               | Retrieve all events                 |
+| GET    | `/events/:id`           | Retrieve a specific event by ID     |
+| GET    | `/events/user/:id`      | Retrieve all events for a user      |
+| POST   | `/events`               | Create a new event                  |
+| GET    | `/events/circuit-status`| Get circuit breaker status          |
 
 ### Users
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/users` | Retrieve all users |
-| GET | `/users/:id` | Retrieve a specific user by ID |
+| Method | Endpoint     | Description                  |
+|--------|--------------|------------------------------|
+| GET    | `/users`     | Retrieve all users          |
+| GET    | `/users/:id` | Retrieve a specific user    |
 
-## Deployment
+---
+
+## 🚀 Deployment
 
 ### Local Deployment
 
@@ -90,18 +102,20 @@ docker run -p 3000:3000 amex-challenge-backend
 The application is designed to be deployed to any cloud platform:
 
 1. **AWS**:
-   - Push to Elastic Beanstalk or deploy as a container in ECS
-   - Set environment variables for configuration
+   - Push to Elastic Beanstalk or deploy as a container in ECS.
+   - Set environment variables for configuration.
 
 2. **Azure**:
-   - Deploy to App Service or Azure Container Instances
-   - Configure environment variables in Application Settings
+   - Deploy to App Service or Azure Container Instances.
+   - Configure environment variables in Application Settings.
 
 3. **GCP**:
-   - Deploy to Cloud Run or App Engine
-   - Set environment variables in the cloud console
+   - Deploy to Cloud Run or App Engine.
+   - Set environment variables in the cloud console.
 
-## Testing
+---
+
+## 🧪 Testing
 
 ### Manual Testing
 
@@ -130,39 +144,39 @@ npm run test:coverage
 npm run test:watch
 ```
 
-## Features
+---
 
-### Caching
+## 🌟 Features
 
-The application implements an in-memory caching system that:
-- Caches API responses to reduce latency
-- Supports configurable TTL (Time To Live)
-- Automatically cleans up expired items
+### ⚡ Caching
 
-### Rate Limiting
+- Caches API responses to reduce latency.
+- Supports configurable TTL (Time To Live).
+- Automatically cleans up expired items.
 
-To protect against abuse, the API implements rate limiting:
-- 100 requests per minute per client
-- Configurable limits and time windows
-- Appropriate 429 status codes when limits are exceeded
+### 🔒 Rate Limiting
 
-### Circuit Breaker Pattern
+- Protects against abuse with 100 requests per minute per client.
+- Configurable limits and time windows.
+- Returns appropriate 429 status codes when limits are exceeded.
 
-To improve resilience, the API implements circuit breaker patterns:
-- Prevents cascading failures
-- Automatically detects and isolates failing services
-- Self-healing with automatic retries
-- Status monitoring via `/events/circuit-status` endpoint
+### 🛡️ Circuit Breaker Pattern
 
-### Security Headers
+- Prevents cascading failures.
+- Automatically detects and isolates failing services.
+- Self-healing with automatic retries.
+- Status monitoring via `/events/circuit-status` endpoint.
 
-The application implements security best practices:
-- XSS Protection
-- Content Security Policy
-- CORS protection
-- Additional security headers
+### 🛠️ Security Headers
 
-## Thought Process
+- XSS Protection.
+- Content Security Policy.
+- CORS protection.
+- Additional security headers.
+
+---
+
+## 🧠 Thought Process
 
 ### Order of operations
 - Initial Look
@@ -217,7 +231,9 @@ Refactoring the routes improved code organization while maintaining backward com
 
 Throughout the process, I maintained a balance between immediate improvements and setting up patterns that could scale with the application's growth. Each decision was guided by the principles of reliability, performance, security, and maintainability.
 
-## TODOs
+---
+
+## ✅ TODOs
 
 To take this application into production, consider the following steps:
 
@@ -261,6 +277,8 @@ To take this application into production, consider the following steps:
     - Perform load testing using tools like Apache JMeter or k6.
     - Optimize performance based on test results.
 
-## License
+---
+
+## 📜 License
 
 MIT
