@@ -39,7 +39,7 @@ amex-challenge-backend/
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/amex-challenge-backend.git
+git clone https://github.com/RyanWolfen7/amex-challenge-backend.git
 cd amex-challenge-backend
 
 # Install dependencies
